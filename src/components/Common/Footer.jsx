@@ -11,7 +11,7 @@ const Footer = () => {
         <div className="footer-section">
           <h3 className="footer-title">Gabriela Rey</h3>
           <p className="footer-description">
-            Ingeniero de Telecomunicaciones & Estudiante de Ingeniería de Computación
+            Ingeniero de Telecomunicaciones y Estudiante de Ingeniería de Computación
           </p>
         </div>
         
@@ -28,7 +28,6 @@ const Footer = () => {
           <h4 className="footer-subtitle">Contacto</h4>
           <ul className="contact-info">
             <li>Email: gabrp2908@gmail.com</li>
-            <li>Teléfono: +58 4246187804</li>
             <li>Ubicación: Maracaibo, Venezuela</li>
           </ul>
         </div>

@@ -1,6 +1,6 @@
 .footer {
   background: var(--text-dark);
-  color: var(--bg-card);
+  color: var(--bg-white);
   padding: var(--space-2xl) 0 var(--space-lg);
 }
 
@@ -38,7 +38,7 @@
 }
 
 .footer-links a {
-  color: var(--text-secondary);
+  color: var(--bg-gray);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -50,7 +50,7 @@
 .contact-info {
   list-style: none;
   padding: 0;
-  color: var(--text-secondary);
+  color: var(--bg-gray);
   line-height: 1.8;
 }
 
@@ -58,6 +58,6 @@
   text-align: center;
   padding-top: var(--space-lg);
   margin-top: var(--space-xl);
-  border-top: 1px solid var(--text-secondary);
-  color: var(--text-muted);
+  border-top: 1px solid var(--text-medium);
+  color: var(--text-light);
 }
