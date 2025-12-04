@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './Auth.css';
+import AuthCard from './AuthCard';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -56,76 +58,63 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <div className="auth-header">
-          <div className="auth-icon">
-            <div className="icon-placeholder pulse">
-              <span className="icon-text">🔐</span>
-            </div>
+    <AuthCard 
+      title="Iniciar Sesión"
+      hint={
+        <div className="auth-hint">
+          <p className="hint-title">Usuario de prueba:</p>
+          <div className="demo-users">
+            <span className="demo-user">admin / 1234</span>
           </div>
-          <h2 className="auth-title">Iniciar Sesión</h2>
+        </div>
+      }
+    >
+      <form onSubmit={handleSubmit} className="auth-form">
+        <div className="form-group">
+          <label htmlFor="username" className="form-label">Usuario</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            className="form-input"
+            placeholder="Ingresa tu nombre de usuario"
+            required
+          />
         </div>
         
-        <form onSubmit={handleSubmit} className="auth-form">
-          <div className="form-group">
-            <label htmlFor="username" className="form-label">Usuario</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              className="form-input"
-              placeholder="Ingresa tu nombre de usuario"
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="password" className="form-label">Contraseña</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className="form-input"
-              placeholder="Ingresa tu contraseña"
-              required
-              minLength="4"
-            />
-          </div>
-          
-          {error && <div className="error-message">{error}</div>}
-          
-          <button type="submit" className="auth-submit-btn btn-primary">
-            <span>Ingresar</span>
-            <span className="btn-icon">→</span>
-          </button>
-        </form>
+        <div className="form-group">
+          <label htmlFor="password" className="form-label">Contraseña</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className="form-input"
+            placeholder="Ingresa tu contraseña"
+            required
+            minLength="4"
+          />
+        </div>
         
-        <div className="auth-links">
-          <p className="auth-text">
-            ¿No tienes cuenta?{' '}
-            <Link to="/register" className="auth-link">
-              <strong>Regístrate aquí</strong>
-            </Link>
-          </p>
-          
-          <div className="auth-hint">
-            <p className="hint-title">Usuario de prueba:</p>
-            <div className="demo-users">
-              <span className="demo-user">admin / 1234</span>
-            </div>
-          </div>
-          
-          <Link to="/" className="auth-back-link">
-            Volver al inicio
+        {error && <div className="error-message">{error}</div>}
+        
+        <button type="submit" className="auth-submit-btn btn-primary">
+          <span>Ingresar</span>
+        </button>
+      </form>
+      
+      <div className="auth-links">
+        <p className="auth-text">
+          ¿No tienes cuenta?{' '}
+          <Link to="/register" className="auth-link">
+            <strong>Regístrate aquí</strong>
           </Link>
-        </div>
+        </p>
       </div>
-    </div>
+    </AuthCard>
   );
 };
 

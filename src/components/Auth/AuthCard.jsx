@@ -1,4 +1,5 @@
 import React from 'react';
+import './Auth.css'
 
 const AuthCard = ({ 
   title, 
@@ -11,9 +12,15 @@ const AuthCard = ({
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <h1 className="auth-main-title">Portafolio Gabriela Rey</h1>
+          <h1 className="auth-main-title">Portafolio</h1>
           <h2 className="auth-subtitle">Proyecto 3 - Manejo de Frameworks</h2>
-          <div className="auth-icon"></div>
+          <div className="auth-icon">
+            {icon && (
+              <div className="icon-placeholder pulse">
+                <span className="icon-text">{icon}</span>
+              </div>
+            )}
+          </div>
           <h2 className="auth-form-title">{title}</h2>
         </div>
         
