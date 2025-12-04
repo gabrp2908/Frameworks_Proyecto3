@@ -1,0 +1,77 @@
+.project-slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.slider-container {
+  position: relative;
+  background: var(--bg-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.slider-image .image-placeholder {
+  height: 400px;
+  background: linear-gradient(135deg, var(--light-blue), var(--light-purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--border-light);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--primary-purple);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.slider-btn:hover {
+  background: var(--primary-blue);
+  color: white;
+  border-color: var(--primary-blue);
+}
+
+.slider-btn.prev {
+  left: var(--space-md);
+}
+
+.slider-btn.next {
+  right: var(--space-md);
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: var(--space-md);
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.slider-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid white;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.slider-dot.active {
+  background: var(--primary-purple);
+}

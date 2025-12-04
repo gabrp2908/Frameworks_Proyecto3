@@ -1,0 +1,125 @@
+/* Project Detail Page */
+.project-detail-page {
+  padding: var(--space-xl) var(--space-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: var(--primary-purple);
+  font-size: 1rem;
+  cursor: pointer;
+  padding: var(--space-sm) 0;
+  margin-bottom: var(--space-lg);
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+
+.project-detail-header {
+  margin-bottom: var(--space-xl);
+}
+
+.project-detail-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: var(--space-sm);
+}
+
+.project-detail-meta {
+  display: flex;
+  gap: var(--space-md);
+  color: var(--text-light);
+}
+
+.project-detail-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-xl);
+}
+
+.project-detail-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.project-description-section h3,
+.project-features-section h3 {
+  color: var(--text-dark);
+  margin-bottom: var(--space-md);
+}
+
+.project-features-section ul {
+  padding-left: var(--space-lg);
+  color: var(--text-medium);
+  line-height: 1.6;
+}
+
+.project-features-section li {
+  margin-bottom: var(--space-sm);
+}
+
+.project-info-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 100px;
+}
+
+.project-info-card h3 {
+  color: var(--text-dark);
+  margin-bottom: var(--space-lg);
+}
+
+.info-group {
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.info-group:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.info-group strong {
+  display: block;
+  color: var(--text-dark);
+  margin-bottom: var(--space-xs);
+}
+
+.info-group span {
+  color: var(--text-medium);
+}
+
+.status-completed {
+  color: #10B981;
+  font-weight: 600;
+}
+
+.technologies-section {
+  margin-bottom: var(--space-lg);
+}
+
+.technologies-section h4 {
+  color: var(--text-dark);
+  margin-bottom: var(--space-md);
+}
+
+.technologies-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.repository-link {
+  text-decoration: none;
+  display: inline-block;
+}

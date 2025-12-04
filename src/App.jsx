@@ -5,6 +5,10 @@ import Footer from './components/Common/Footer';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import Home from './pages/Home';
+import Projects from './pages/Projects';
+import About from './pages/About';
+import ProjectDetailPage from './pages/ProjectDetailPage';
+import './App.css';
 import './styles/theme.css';
 
 function App() {
@@ -19,6 +23,10 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:id" element={<ProjectDetailPage />} />
+            <Route path="/about" element={<About />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
         <Footer />

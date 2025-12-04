@@ -1,0 +1,18 @@
+/* ===== COMPONENTES REUTILIZABLES ===== */
+.section-title {
+  text-align: center;
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: var(--space-xl);
+}
+
+.tech-tag {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--bg-gray);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  color: var(--primary-blue);
+  margin: 0 var(--space-xs) var(--space-xs) 0;
+}
