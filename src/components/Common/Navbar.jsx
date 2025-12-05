@@ -43,7 +43,7 @@ const Navbar = () => {
         <div className="navbar-auth">
           {isAuthenticated ? (
             <div className="user-info">
-              <span className="username">👋 {username}</span>
+              <span className="username">{username}</span>
               <button onClick={handleLogout} className="auth-btn logout-btn">
                 Cerrar Sesión
               </button>
