@@ -7,8 +7,19 @@ const AboutContent = () => {
       <div className="about-hero">
         <div className="about-hero-left">
           <div className="profile-photo-container">
-            <div className="profile-photo-placeholder">
-              <span className="profile-initials">GR</span>
+            <div className="profile-photo-wrapper">
+              <img 
+                src="/images/icon.png" 
+                alt="Gabriela Rey"
+                className="profile-photo"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  e.target.nextElementSibling.style.display = 'flex';
+                }}
+              />
+              <div className="profile-photo-fallback">
+                <span className="profile-initials">GR</span>
+              </div>
             </div>
           </div>
         </div>
@@ -32,7 +43,7 @@ const AboutContent = () => {
               document.body.removeChild(link);
             }}
           >
-            📄 Descargar CV
+          Descargar CV
           </button>
         </div>
       </div>
@@ -40,6 +51,12 @@ const AboutContent = () => {
       {/* Datos personales */}
       <div className="personal-info-card">
         <div className="info-grid">
+
+          <div className="info-item">
+            <strong>Nombre Completo:</strong>
+            <span>Gabriela Valentina Rey Pérez</span>
+          </div>
+
           <div className="info-item">
             <strong>Email:</strong>
             <span>gabrp2908@gmail.com</span>
@@ -72,7 +89,7 @@ const AboutContent = () => {
         </div>
       </div>
 
-      {/* Competencias e Idiomas en horizontal */}
+      {/* Competencias e Idiomas */}
       <div className="competencies-languages-row">
         <div className="competencies-card">
           <h3 className="card-title">Competencias Personales</h3>
@@ -113,7 +130,6 @@ const AboutContent = () => {
         </div>
       </div>
 
-      {/* Resto del contenido en grid */}
       <div className="about-grid">
         <div className="about-section">
           <h2 className="section-title">Formación Académica</h2>
@@ -160,8 +176,9 @@ const AboutContent = () => {
               <p>Materias dictadas en la Facultad de Ingeniería:</p>
               <ul>
                 <li>Matemática I</li>
-                <li>Comunicación de Datos</li>
                 <li>Circuitos Eléctricos I</li>
+                <li>Laboratorio de Circuitos Eléctricos I</li>
+                <li>Comunicación de Datos</li>
                 <li>Diseño Lógico</li>
               </ul>
             </div>
@@ -204,7 +221,7 @@ const AboutContent = () => {
                 <span className="skill-tag">Cisco Packet Tracer</span>
                 <span className="skill-tag">Proteus Design Suite</span>
                 <span className="skill-tag">Visual Studio Code</span>
-                <span className="skill-tag">Git & GitHub</span>
+                <span className="skill-tag">Git y GitHub</span>
               </div>
             </div>
             
