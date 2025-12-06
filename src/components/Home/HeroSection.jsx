@@ -13,6 +13,8 @@ const HeroSection = () => {
     document.body.removeChild(link);
   };
 
+  const profileImage = '/images/icon.png'; 
+
   return (
     <section className="hero-section">
       <div className="hero-content">
@@ -41,8 +43,19 @@ const HeroSection = () => {
           </div>
         </div>
         <div className="hero-image">
-          <div className="profile-placeholder">
-            <span className="initials">GR</span>
+          <div className="profile-image-wrapper">
+            <img 
+              src={profileImage}
+              alt="Gabriela Rey"
+              className="profile-image"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                e.target.nextElementSibling.style.display = 'flex';
+              }}
+            />
+            <div className="profile-fallback">
+              <span className="initials">GR</span>
+            </div>
           </div>
         </div>
       </div>
