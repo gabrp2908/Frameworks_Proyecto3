@@ -2,6 +2,7 @@ import React from 'react';
 import { projects } from '../data/projectsData';
 import ProjectCard from '../components/Projects/ProjectCard';
 import '../styles/Common.css';
+import './Projects.css';
 
 const Projects = () => {
   return (
