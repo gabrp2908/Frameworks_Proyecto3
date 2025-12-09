@@ -20,17 +20,10 @@
   box-shadow: var(--shadow-lg);
 }
 
-.project-image .image-placeholder {
+.project-image img {
+  width: 100%;
   height: 200px;
-  background: linear-gradient(135deg, var(--light-blue), var(--light-purple));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.image-text {
-  color: white;
-  font-weight: 500;
+  object-fit: cover;
 }
 
 .project-content {

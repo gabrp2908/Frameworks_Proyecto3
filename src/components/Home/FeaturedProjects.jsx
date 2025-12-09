@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { featuredProjects } from '../../data/projectsData';
+import { projects } from '../../data/projectsData';
 import CustomButton from '../Common/CustomButton';
 import './FeaturedProjects.css';
 
@@ -8,11 +8,11 @@ const FeaturedProjects = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % featuredProjects.length);
+    setCurrentSlide((prev) => (prev + 1) % projects.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + featuredProjects.length) % featuredProjects.length);
+    setCurrentSlide((prev) => (prev - 1 + projects.length) % projects.length);
   };
 
   return (
@@ -23,14 +23,15 @@ const FeaturedProjects = () => {
         
         <div className="carousel-slide">
           <div className="project-slide">
-            <h3 className="project-title">{featuredProjects[currentSlide].title}</h3>
-            <p className="project-description">{featuredProjects[currentSlide].description}</p>
+            <img src={projects[currentSlide].mainImage} alt={projects[currentSlide].title} className="project-image" />
+            <h3 className="project-title">{projects[currentSlide].title}</h3>
+            <p className="project-description">{projects[currentSlide].shortDescription}</p>
             <div className="technologies">
-              {featuredProjects[currentSlide].technologies.map((tech, index) => (
+              {projects[currentSlide].technologies.map((tech, index) => (
                 <span key={index} className="tech-tag">{tech}</span>
               ))}
             </div>
-            <Link to={`/projects/${featuredProjects[currentSlide].id}`}>
+            <Link to={`/projects/${projects[currentSlide].id}`}>
               <CustomButton variant="outline" text="Ver Más" />
             </Link>
           </div>
@@ -39,7 +40,7 @@ const FeaturedProjects = () => {
         <button className="carousel-btn next" onClick={nextSlide}>›</button>
         
         <div className="carousel-dots">
-          {featuredProjects.map((_, index) => (
+          {projects.map((_, index) => (
             <button
               key={index}
               className={`dot ${index === currentSlide ? 'active' : ''}`}

@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { projects } from '../data/projectsData';
-import ProjectSlider from '../components/Projects/ProjectSlider';
 import CustomButton from '../components/Common/CustomButton';
 import './ProjectDetailPage.css';
 
@@ -9,6 +8,7 @@ const ProjectDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const project = projects.find(p => p.id === parseInt(id));
+  const [showImages, setShowImages] = useState(true);
 
   if (!project) {
     return (
@@ -25,27 +25,49 @@ const ProjectDetailPage = () => {
         ← Volver a Proyectos
       </button>
       
-      <div className="project-detail-header">
-        <h1 className="project-detail-title">{project.title}</h1>
-        <div className="project-detail-meta">
-          <span className="project-year">{project.year}</span>
-          <span className="project-duration">{project.duration}</span>
-        </div>
+      <h1 className="project-detail-title">{project.title}</h1>
+      
+      <div className="media-buttons">
+        <CustomButton 
+          variant={showImages ? "primary" : "outline"} 
+          text="Ver Imágenes" 
+          onClick={() => setShowImages(true)} 
+        />
+        <CustomButton 
+          variant={!showImages ? "primary" : "outline"} 
+          text="Ver Video" 
+          onClick={() => setShowImages(false)} 
+        />
       </div>
       
       <div className="project-detail-content">
         <div className="project-detail-left">
-          <ProjectSlider images={project.images} />
+          {showImages ? (
+            <div className="carousel-container">
+              {project.images.map((image, index) => (
+                <img key={index} src={image} alt={`${project.title} ${index + 1}`} className="carousel-image" />
+              ))}
+            </div>
+          ) : (
+            <div className="video-container">
+              {project.videos.map((video, index) => (
+                <video key={index} controls className="carousel-video">
+                  <source src={video} type="video/mp4" />
+                  Tu navegador no soporta el elemento de video.
+                </video>
+              ))}
+            </div>
+          )}
           
           <div className="project-description-section">
-            <h3>Descripción</h3>
-            <p>{project.description}</p>
+            <h3>Descripción del Proyecto</h3>
+            <p>{project.detailedDescription}</p>
           </div>
           
           <div className="project-features-section">
-            <h3>Características Principales</h3>
+            <h3>Características Clave</h3>
             <ul>
-              {project.features.map((feature, index) => (
+              {project.keyFeatures.map((feature, index) => (
                 <li key={index}>{feature}</li>
               ))}
             </ul>
@@ -54,7 +76,7 @@ const ProjectDetailPage = () => {
         
         <div className="project-detail-right">
           <div className="project-info-card">
-            <h3>Información del Proyecto</h3>
+            <h3>Información General</h3>
             
             <div className="info-group">
               <strong>Duración:</strong>
@@ -63,12 +85,12 @@ const ProjectDetailPage = () => {
             
             <div className="info-group">
               <strong>Colaboradores:</strong>
-              <span>{project.collaborators}</span>
+              <span>{project.collaborators.join(', ')}</span>
             </div>
             
             <div className="info-group">
               <strong>Estado:</strong>
-              <span className="status-completed">Completado</span>
+              <span className={`status-${project.status.toLowerCase()}`}>{project.status}</span>
             </div>
             
             <div className="technologies-section">
@@ -86,7 +108,6 @@ const ProjectDetailPage = () => {
                   href={project.repository} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="repository-link"
                 >
                   <CustomButton variant="primary" text="Ver Repositorio" />
                 </a>

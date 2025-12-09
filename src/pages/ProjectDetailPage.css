@@ -27,7 +27,48 @@
   font-size: 2.25rem;
   font-weight: 700;
   color: var(--text-dark);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+.media-buttons {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.carousel-container {
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  padding: var(--space-md);
+  background: var(--bg-light);
+  border-radius: var(--radius-md);
+}
+
+.carousel-image {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.video-container {
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  padding: var(--space-md);
+  background: var(--bg-light);
+  border-radius: var(--radius-md);
+}
+
+.carousel-video {
+  width: 300px;
+  height: 200px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
 }
 
 .project-detail-meta {
@@ -99,8 +140,18 @@
   color: var(--text-medium);
 }
 
-.status-completed {
+.status-completed, .status-completado {
   color: #10B981;
+  font-weight: 600;
+}
+
+.status-en-progreso {
+  color: #F59E0B;
+  font-weight: 600;
+}
+
+.status-planeado {
+  color: #6B7280;
   font-weight: 600;
 }
 

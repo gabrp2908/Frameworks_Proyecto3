@@ -20,6 +20,15 @@
   text-align: center;
 }
 
+.project-image {
+  width: 100%;
+  max-width: 400px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-lg);
+}
+
 .carousel-btn {
   position: absolute;
   top: 50%;

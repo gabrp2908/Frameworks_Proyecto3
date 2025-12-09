@@ -7,20 +7,17 @@ const ProjectCard = ({ project }) => {
   return (
     <div className="project-card">
       <div className="project-image">
-        <div className="image-placeholder">
-          <span className="image-text">Imagen de {project.title}</span>
-        </div>
+        <img src={project.mainImage} alt={project.title} />
       </div>
       <div className="project-content">
         <h3 className="project-title">{project.title}</h3>
         <div className="project-meta">
-          <span className="project-year">{project.year}</span>
           <span className="project-duration">{project.duration}</span>
         </div>
-        <p className="project-description">{project.description}</p>
+        <p className="project-description">{project.shortDescription}</p>
         
         <div className="project-collaborators">
-          <strong>Colaboradores:</strong> {project.collaborators}
+          <strong>Colaboradores:</strong> {Array.isArray(project.collaborators) ? project.collaborators.join(', ') : project.collaborators}
         </div>
         
         <div className="project-technologies">
