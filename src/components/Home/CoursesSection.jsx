@@ -15,10 +15,6 @@ const CoursesSection = () => {
           <div key={index} className="course-card">
             <h3 className="course-title">{course.title}</h3>
             <p className="course-description">{course.description}</p>
-            <div className="course-meta">
-              <span className="course-institution">Universidad Rafael Urdaneta</span>
-              <span className="course-period">May 2024 - Presente</span>
-            </div>
           </div>
         ))}
       </div>

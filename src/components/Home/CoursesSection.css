@@ -2,6 +2,13 @@
   padding: var(--space-2xl) var(--space-lg);
 }
 
+.section-subtitle{
+  font-size: 1.25rem;
+  color: var(--text-medium);
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
 .courses-grid {
   max-width: 1200px;
   margin: 0 auto;
