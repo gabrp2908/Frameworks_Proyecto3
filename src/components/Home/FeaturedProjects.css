@@ -1,23 +1,75 @@
 .featured-projects {
   padding: var(--space-2xl) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .carousel-container {
   max-width: 800px;
+  width: 100%;
   margin: 0 auto;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xl);
 }
 
+/* Contenedor del slide con animación */
 .carousel-slide {
   background: var(--bg-white);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
   box-shadow: var(--shadow-lg);
-  margin: 0 var(--space-xl);
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Estados de animación */
+.carousel-slide.next.transitioning {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.carousel-slide.prev.transitioning {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.carousel-slide:not(.transitioning) {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .project-slide {
   text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+  overflow: hidden;
+  border-radius: var(--radius-md);
 }
 
 .project-image {
@@ -26,13 +78,17 @@
   height: 250px;
   object-fit: cover;
   border-radius: var(--radius-md);
-  margin-bottom: var(--space-lg);
+  margin: 0 auto;
+  display: block;
+  transition: transform 0.3s ease;
 }
 
+.project-image:hover {
+  transform: scale(1.02);
+}
+
+/* Botones de navegación */
 .carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   background: var(--bg-white);
   border: 2px solid var(--border-light);
   width: 48px;
@@ -44,23 +100,37 @@
   font-size: 1.5rem;
   color: var(--primary-purple);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
-.carousel-btn:hover {
+.carousel-btn:hover:not(:disabled) {
   background: var(--primary-blue);
   color: white;
   border-color: var(--primary-blue);
+  transform: scale(1.1);
 }
 
-.carousel-btn.prev { left: 0; }
-.carousel-btn.next { right: 0; }
+.carousel-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Controles inferiores */
+.carousel-controls {
+  margin-top: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+}
 
 .carousel-dots {
   display: flex;
   justify-content: center;
   gap: var(--space-sm);
-  margin-top: var(--space-lg);
+  margin: 0;
 }
 
 .dot {
@@ -70,9 +140,140 @@
   background: var(--border-medium);
   border: none;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.3s ease;
 }
 
 .dot.active {
   background: var(--primary-purple);
+  transform: scale(1.2);
+}
+
+.dot:hover:not(:disabled) {
+  background: var(--primary-blue);
+  transform: scale(1.1);
+}
+
+.dot:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Títulos y descripciones con animación sutil */
+.project-title {
+  margin-bottom: var(--space-sm);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-slide.transitioning .project-title,
+.carousel-slide.transitioning .project-description,
+.carousel-slide.transitioning .technologies {
+  opacity: 0;
+}
+
+.project-description {
+  margin-bottom: var(--space-lg);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.technologies {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-lg);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.tech-tag {
+  background: var(--bg-light);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+  background: var(--primary-blue-light);
+  color: var(--primary-blue);
+}
+
+/* Indicador de slide actual */
+.slide-counter {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  margin-top: var(--space-sm);
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .carousel-container {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+    order: 2;
+    margin-top: var(--space-md);
+  }
+  
+  .carousel-btn.prev {
+    margin-right: var(--space-md);
+  }
+  
+  .carousel-btn.next {
+    margin-left: var(--space-md);
+  }
+  
+  .project-image {
+    max-width: 100%;
+    height: 200px;
+  }
+  
+  .carousel-slide {
+    padding: var(--space-lg);
+  }
+  
+  /* Ajuste de animación para móviles */
+  .carousel-slide.next.transitioning {
+    transform: translateX(20px);
+  }
+  
+  .carousel-slide.prev.transitioning {
+    transform: translateX(-20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    gap: var(--space-sm);
+  }
+  
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
+  }
+  
+  .project-image {
+    height: 180px;
+  }
+  
+  .featured-projects {
+    padding: var(--space-xl) var(--space-md);
+  }
+  
+  /* Ajuste de animación para móviles pequeños */
+  .carousel-slide.next.transitioning {
+    transform: translateX(15px);
+  }
+  
+  .carousel-slide.prev.transitioning {
+    transform: translateX(-15px);
+  }
 }
