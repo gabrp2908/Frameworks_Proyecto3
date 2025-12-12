@@ -2,6 +2,7 @@ import React from 'react';
 import HeroSection from '../components/Home/HeroSection';
 import FeaturedProjects from '../components/Home/FeaturedProjects';
 import StatsSection from '../components/Home/StatsSection';
+import TechChartSection from '../components/Home/TechChartSection';
 import CoursesSection from '../components/Home/CoursesSection';
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
       <HeroSection />
       <FeaturedProjects />
       <StatsSection />
+      <TechChartSection />
       <CoursesSection />
     </div>
   );
