@@ -226,7 +226,7 @@
   right: 0;
   height: 3px;
   background: linear-gradient(90deg, var(--primary-blue), var(--primary-purple));
-  border-radius: 2px; /* Asegura que se centre */
+  border-radius: 2px;
 }
 
 .section-title {
