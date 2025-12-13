@@ -14,13 +14,11 @@ const ProjectDetailPage = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [direction, setDirection] = useState(null);
   const videoRefs = useRef([]);
+  const thumbnailsRef = useRef(null);
   const autoPlayRef = useRef(null);
-  
-  // Determinar si estamos mostrando imágenes o videos
   const currentMedia = showImages ? project.images : project.videos;
   const isVideo = !showImages;
   
-  // Configurar autoplay solo para imágenes
   useEffect(() => {
     if (showImages && currentMedia.length > 1) {
       autoPlayRef.current = setInterval(() => {
@@ -35,7 +33,6 @@ const ProjectDetailPage = () => {
     };
   }, [showImages, currentMedia.length]);
   
-  // Pausar todos los videos al cambiar de slide
   useEffect(() => {
     if (isVideo) {
       videoRefs.current.forEach((video, index) => {
@@ -47,7 +44,19 @@ const ProjectDetailPage = () => {
     }
   }, [currentIndex, isVideo]);
   
-  // Resetear índice al cambiar entre imágenes y videos
+  useEffect(() => {
+    if (thumbnailsRef.current) {
+      const activeThumb = thumbnailsRef.current.querySelector('.thumbnail-item.active');
+      if (activeThumb) {
+        activeThumb.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      }
+    }
+  }, [currentIndex]);
+  
   useEffect(() => {
     setCurrentIndex(0);
     if (autoPlayRef.current) {
@@ -58,7 +67,6 @@ const ProjectDetailPage = () => {
   const handleNext = () => {
     if (isTransitioning || currentMedia.length <= 1) return;
     
-    // Pausar video actual si estamos en modo video
     if (isVideo && videoRefs.current[currentIndex]) {
       videoRefs.current[currentIndex].pause();
     }
@@ -210,19 +218,6 @@ const ProjectDetailPage = () => {
                   ›
                 </button>
                 
-                {/* Indicadores de posición */}
-                <div className="slider-indicators">
-                  {currentMedia.map((_, index) => (
-                    <button
-                      key={index}
-                      className={`slider-indicator ${index === currentIndex ? 'active' : ''}`}
-                      onClick={() => goToSlide(index)}
-                      disabled={isTransitioning}
-                      aria-label={`Ir a ${isVideo ? 'video' : 'imagen'} ${index + 1}`}
-                    />
-                  ))}
-                </div>
-                
                 {/* Contador */}
                 <div className="slider-counter">
                   <span className="current-index">{currentIndex + 1}</span>
@@ -231,8 +226,47 @@ const ProjectDetailPage = () => {
                 </div>
               </>
             )}
-            
           </div>
+          
+          {/* FILA DE MINIATURAS */}
+          {currentMedia.length > 1 && (
+            <div className="thumbnails-container">
+              <div className="thumbnails-wrapper" ref={thumbnailsRef}>
+                <div className="thumbnails-track">
+                  {currentMedia.map((media, index) => (
+                    <button
+                      key={index}
+                      className={`thumbnail-item ${index === currentIndex ? 'active' : ''}`}
+                      onClick={() => goToSlide(index)}
+                      disabled={isTransitioning}
+                      aria-label={`Ver ${isVideo ? 'video' : 'imagen'} ${index + 1}`}
+                    >
+                      <div className="thumbnail-content">
+                        {isVideo ? (
+                          <div className="thumbnail-video">
+                            <video 
+                              src={media}
+                              className="thumbnail-video-element"
+                              poster={project.mainImage}
+                            />
+                            <div className="video-icon">▶</div>
+                          </div>
+                        ) : (
+                          <img 
+                            src={media} 
+                            alt={`Miniatura ${index + 1}`} 
+                            className="thumbnail-image"
+                            loading="lazy"
+                          />
+                        )}
+                        <div className="thumbnail-number">{index + 1}</div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
           
           <div className="project-description-section">
             <h3>Descripción del Proyecto</h3>
